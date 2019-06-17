@@ -1,0 +1,105 @@
+{
+    "north": [
+        {
+            "id": "0",
+            "name": "taipei",
+            "info": "臺北市"
+        },
+        {
+            "id": "1",
+            "name": "sinpei",
+            "info": "新北市"
+        },
+        {
+            "id": "2",
+            "name": "keelung",
+            "info": "基隆市"
+        },
+        {
+            "id": "3",
+            "name": "taoyuan",
+            "info": "桃園市"
+        },
+        {
+            "id": "4",
+            "name": "hsinchu",
+            "info": "新竹市"
+        },
+        {
+            "id": "5",
+            "name": "sinpei",
+            "info": "新竹縣"
+        },
+        {
+            "id": "6",
+            "name": "yilan",
+            "info": "宜蘭縣"
+        }
+    ],
+    "east": [
+        {
+            "id": 0,
+            "name": "hualien",
+            "info": "花蓮縣"
+        },
+        {
+            "id": 1,
+            "name": "taitung",
+            "info": "臺東縣"
+        }
+    ],
+    "mid":[
+        {
+            "id":0,
+            "name":"miaoli",
+            "info":"苗栗縣"
+        },
+        {
+            "id":1,
+            "name":"taichung",
+            "info":"臺中市"
+        },
+        {
+            "id":2,
+            "name":"changhua",
+            "info":"彰化縣"
+        },
+        {
+            "id":3,
+            "name":"nantou",
+            "info":"南投縣"
+        },
+        {
+            "id":4,
+            "name":"yunlin",
+            "info":"雲林縣"
+        }
+    ],
+    "south":[
+        {
+            "id":0,
+            "name":"chiayi",
+            "info":"嘉義市"
+        },
+        {
+            "id":1,
+            "name":"sinpei",
+            "info":"嘉義縣"
+        },
+        {
+            "id":2,
+            "name":"tainan",
+            "info":"臺南市"
+        },
+        {
+            "id":3,
+            "name":"kaohsiung",
+            "info":"高雄市"
+        },
+        {
+            "id":4,
+            "name":"pingtung",
+            "info":"屏東縣"
+        }
+    ]
+}
