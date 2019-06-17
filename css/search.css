@@ -1,0 +1,250 @@
+@charset "UTF-8";
+* {
+    margin: auto;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    font-family: "微軟正黑體", cursive;
+}
+
+.u-cf:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    /* overflow-x: hidden; */
+}
+
+a::selection {
+    color: #fff;
+
+}
+
+img::selection {
+    color: #fff;
+}
+
+.MAIN {
+    width: 100%;
+    height: 100%;
+    cursor: default;
+    background-image: url(../assets/im/Tbg-b.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+}
+
+.wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.top {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.nav_LOGO a {
+    text-decoration: none;
+    float: left;
+    font-weight: bolder;
+    color: #fff;
+    font-size: 32px;
+    margin-top: 5px;
+}
+
+.nav_menu {
+    float: right;
+    padding: 15px 0;
+    font-size: 16px;
+}
+
+.nav_menu li {
+    list-style: none;
+}
+
+.nav_menu li a {
+    text-decoration: none;
+    display: block;
+    color: #fff;
+}
+
+.down {
+    width: 100%;
+    height: auto;
+}
+
+.content {
+    height: calc(100vh - 60px);
+    width: 90%;
+}
+
+.searchbar {
+    width: 100%;
+    top: 5%;
+    position: relative;
+    display: flex;
+}
+
+.searchTerm {
+    float: left;
+    background-color: rgb(0, 0, 0, 0.2);
+    width: 100%;
+    border: 1.5px solid #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #8C8C8C;
+    outline: none;
+    font-weight: bold;
+    caret-color: #8C8C8C;
+}
+
+.searchTerm::-webkit-input-placeholder {
+    color: #d3d3d3;
+}
+
+.searchTerm:focus {
+    color: #d3d3d3;
+}
+
+.searchButton {
+    position: absolute;
+    float: right;
+    right: 0%;
+    width: 35px;
+    height: 30px;
+    border: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: center;
+    color: #d3d3d3;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+}
+
+.searchButton:active {
+    font-size: 14px;
+    padding: 2px 0px;
+}
+
+.SEARCH {
+    position: relative;
+    top: 10%;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    width: 100%;
+    margin: auto;
+}
+
+.search_content {
+    width: 100%;
+    border: 1px solid #fff;
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/*----------介紹頁面----------*/
+
+.showintro {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 25px 0;
+}
+
+.INTRO {
+    position: relative;
+    width: 60%;
+    height: auto;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 2;
+}
+
+.intro_top {
+    position: relative;
+    width: 100%;
+    height: 50px;
+}
+
+.closeBtn{
+    cursor: pointer;
+
+}
+
+.closeBtn1 {
+    position: absolute;
+    font-size: 20px;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(121, 121, 121, 0.8);
+}
+
+.intro_content {
+    width: 90%;
+}
+
+.intro_content img {
+    position: relative;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: auto;
+}
+
+.intro_btm {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-top: 1.5px solid rgba(121, 121, 121, 0.6);
+}
+
+.closeBtn2 {
+    position: relative;
+    font-size: 25px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(121, 121, 121, 0.8);
+}
+
+.closeBtn:hover {
+    color: rgba(121, 121, 121, 0.6);
+}
+
+/*----------返回頂部----------*/
+
+#backtotop {
+    border-radius: 50%;
+    display: scroll;
+    position: fixed;
+    right: 4%;
+    color: rgba(255, 255, 255, 0.8);
+    opacity: 1;
+    cursor: pointer;
+}
+
+#backtotop:hover {
+    opacity: 0.7;
+}

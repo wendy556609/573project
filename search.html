@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+</html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Final-Exam</title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <link rel="stylesheet" href="css/search.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/intro.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="MAIN" style="overflow-x: hidden;">
+        <div class="showintro">
+            <div class="INTRO">
+                <div class="intro_top">
+                    <i class="fas fa-times closeBtn closeBtn1" aria-hidden="true"></i>
+                </div>
+                <div class="intro_content">
+                    <img src="" alt="" />
+                </div>
+                <div class="intro_btm">
+                    <i class="far fa-times-circle closeBtn closeBtn2" aria-hidden="true"></i>
+                </div>
+            </div>
+            <a id="backtotop" title="返回頂部">
+                <i class="fas fa-chevron-circle-up fa-2x" alt="Back to Top"></i>
+            </a>
+        </div>
+        <div class="wrapper">
+            <div class="top u-cf">
+                <div class="navbar">
+                    <div class="nav_LOGO">
+                        <a href="home.html">Vá ao café</a>
+                    </div>
+                    <ul class="nav_menu">
+                        <li><a href="#">登入</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="down u-cf">
+                <div class="content">
+                    <div class="searchbar">
+                        <input type="text" v-model="search" class="searchTerm" placeholder="Search"></input>
+                        <button type="submit" class="searchButton">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="SEARCH">
+                        <div class="search_content search_content1" id="search_content1">
+                            <img src="" alt="" style="width: 100%;height: auto;" />
+                        </div>
+                        <div class="search_content search_content2" id="search_content2">
+                            <img src="" alt="" style="width: 100%;height: auto;" />
+                        </div>
+                        <div class="search_content search_content3" id="search_content3">
+                            <img src="" alt="" style="width: 100%;height: auto;" />
+                        </div>
+                        <div class="search_content search_content4" id="search_content4">
+                            <img src="" alt="" style="width: 100%;height: auto;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
