@@ -1,8 +1,27 @@
 <template>
-  <div class="BAR u-cf">
-    <div class="wrapper">
-      <div class="nav_LOGO">
-        <a @click="$router.push({ name: 'home'})">Vá ao café</a>
+      <div class="top u-cf">
+        <div class="navbar">
+          <div class="nav_LOGO">
+            <a @click="$router.push({ name: 'home'})">Vá ao café</a>
+          </div>
+          <ul class="nav_menu">
+            <li>
+              <a @click="$router.push({ name: 'area'})">搜尋</a>
+            </li>
+            <li :style="{display:this.like}">
+              <a @click="$router.push({ name: 'like'})">收藏</a>
+            </li>
+            <li :style="{display:this.signin}">
+              <a @click="$router.push({ name: 'login'})">登入</a>
+            </li>
+            <li :style="{display:this.signout}">
+              <a  @click="logout">登出</a>
+            </li>
+            <li :style="{display:this.signout}">
+              <a>{{this.username}}</a>
+            </li>
+          </ul>
+        </div>
       </div>
       <input class="nav_hum" type="checkbox" id="nav_hum" name="nav_hum">
       <label class="nav_hum_btn" id="nav_hum_btn" for="nav_hum"></label>
@@ -33,17 +52,18 @@ import firebase, { functions } from "firebase";
 import router from "../router.js";
 
 export default {
-  name: "Bar",
-  data() {
-    return {
+    name:"Bar",
+    data(){
+      return{
       signout: "none",
       signin: "",
       like: "none",
-      isLogin: false
-    };
-  },
-  methods: {
-    async logout() {
+      isLogin:false,
+      username:sessionStorage.getItem('username')
+      }
+    },
+    methods:{
+      async logout() {
       firebase
         .auth()
         .signOut()
@@ -56,27 +76,30 @@ export default {
             }
           });
         });
-      router.push("/area");
-      sessionStorage.setItem("isLogin", false);
-      this.setState();
-      sessionStorage.setItem("username", "");
-      sessionStorage.setItem("uid", "");
+        router.push("/area");
+        sessionStorage.setItem("isLogin", false);
+        this.setState()
+        sessionStorage.setItem('username',"")
+        sessionStorage.setItem('uid',"")
     },
     setState() {
-      this.isLogin = sessionStorage.getItem("isLogin");
-      if (this.isLogin === "true") {
+      this.isLogin=sessionStorage.getItem("isLogin")
+      if(this.isLogin === 'true'){
         console.log("login");
-        this.signout = "";
-        this.signin = "none";
-        this.like = "";
+        this.signout="";
+        this.signin="none";
+        this.like="";
       }
-      if (this.isLogin === "false") {
+      if(this.isLogin === 'false'){
         console.log("not");
-        this.signout = "none";
-        this.signin = "";
-        this.like = "none";
+        this.signout="none";
+        this.signin="";
+        this.like="none";
       }
-    }
+    },
+    },
+    mounted() {
+      this.setState()
   },
   mounted() {
     this.setState();

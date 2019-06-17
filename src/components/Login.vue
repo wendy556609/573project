@@ -49,7 +49,8 @@ export default {
       password: "",
       errors: [],
       loading: false,
-      user: ""
+      user: "",
+      users:[]
     };
   },
   methods: {
@@ -68,11 +69,17 @@ export default {
           }
         });
         sessionStorage.setItem("isLogin", true);
-        this.readUser();
+        this.readUser()
       } catch (error) {
         this.errors.push(error.message);
         this.loading = false;
       }
+    },
+    readUser(){
+      this.users = firebase.auth().currentUser;
+            
+      sessionStorage.setItem('username',this.users.displayName)
+      sessionStorage.setItem('uid',this.users.uid)
     }
   },
   mounted() {},

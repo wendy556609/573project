@@ -1,11 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from './components/Home';
-import Details from './components/Details';
-import Post from './components/Post';
 import Area from './components/Area';
 import Search from './components/Search';
-import Login from './components/Login';
+import Login from './components/Login'
+import Like from './components/Like'
 
 
 Vue.use(Router);
@@ -31,6 +30,18 @@ export default new Router({
       path: "/login",
       name: "login",
       component: Login
+    },
+    {
+      path: "/like",
+      name: "like",
+      component: Like,
+      beforeEnter: (to, from, next) => {
+        if (!firebase.auth().currentUser) {
+          next("/login");
+        } else {
+          next()
+        }
+      }
     }
   ]
 });
