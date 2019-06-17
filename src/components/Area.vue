@@ -117,7 +117,6 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   margin: 0 auto;
-  overflow:auto;
 }
 
 .wrapper {

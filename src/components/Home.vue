@@ -17,7 +17,7 @@
 
 <script>
 import router from "../router";
-
+import { mapActions } from "vuex";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
@@ -112,15 +112,15 @@ export default {
 .menu-item {
   position: absolute;
   border: 2px solid #fff;
-  line-height: 55px;
-  font-size: 25px;
+  line-height: 45px;
+  font-size: 22px;
   font-weight: bold;
-  width: 200px;
-  height: 60px;
+  width: 160px;
+  height: 50px;
   background: rgba(0, 0, 0, 0.2);
   transform: scale(0.001, 0.001);
   transition: ease-out 300ms;
-  margin-left: 5px;
+  margin-left: 25px;
   top: 100px;
   text-decoration: none;
   color: #fff;
@@ -134,8 +134,8 @@ export default {
 }
 
 .menu-item:active {
-  padding: 10.5px 0px;
-  font-size: 18px;
+  line-height: 45px;
+  font-size: 20px;
 }
 
 .menu-open:checked + .menu-open-button {

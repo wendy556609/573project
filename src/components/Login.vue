@@ -69,7 +69,7 @@ export default {
           }
         });
         sessionStorage.setItem("isLogin", true);
-        this.readUser()
+        this.readUser();
       } catch (error) {
         this.errors.push(error.message);
         this.loading = false;

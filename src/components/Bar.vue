@@ -36,9 +36,9 @@ import firebase, { functions } from "firebase";
 import router from "../router.js";
 
 export default {
-    name:"Bar",
-    data(){
-      return{
+  name: "Bar",
+  data() {
+    return {
       signout: "none",
       signin: "",
       like: "none",
@@ -60,30 +60,27 @@ export default {
             }
           });
         });
-        router.push("/area");
-        sessionStorage.setItem("isLogin", false);
-        this.setState()
-        sessionStorage.setItem('username',"")
-        sessionStorage.setItem('uid',"")
+      router.push("/area");
+      sessionStorage.setItem("isLogin", false);
+      this.setState();
+      sessionStorage.setItem("username", "");
+      sessionStorage.setItem("uid", "");
     },
     setState() {
-      this.isLogin=sessionStorage.getItem("isLogin")
-      if(this.isLogin === 'true'){
+      this.isLogin = sessionStorage.getItem("isLogin");
+      if (this.isLogin === "true") {
         console.log("login");
-        this.signout="";
-        this.signin="none";
-        this.like="";
+        this.signout = "";
+        this.signin = "none";
+        this.like = "";
       }
-      if(this.isLogin === 'false'){
+      if (this.isLogin === "false") {
         console.log("not");
-        this.signout="none";
-        this.signin="";
-        this.like="none";
+        this.signout = "none";
+        this.signin = "";
+        this.like = "none";
       }
-    },
-    },
-    mounted() {
-      this.setState()
+    }
   },
   mounted() {
     this.setState();

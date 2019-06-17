@@ -214,7 +214,7 @@ export default {
       this.standing_desk = shop.stand;
       this.mrt = shop.mrt;
       this.shopUrls =
-        "http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" +
+        "https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" +
         shop.address +
         "&z=16&output=embed&t=";
       this.shopId = shop.id;
