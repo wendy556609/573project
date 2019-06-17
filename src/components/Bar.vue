@@ -30,6 +30,9 @@
       <div class="line line3"></div>
 
       <ul class="nav_menu">
+        <li :style="{display:this.signout}" style="color:white;">
+          {{this.username}}
+        </li>
         <li :style="{display:this.signout}">
           <a @click="logout">登出</a>
         </li>
@@ -37,7 +40,7 @@
           <a @click="$router.push({ name: 'login'})">登入</a>
         </li>
         <li :style="{display:this.like}">
-          <a >收藏</a>
+          <a @click="$router.push({ name: 'like'})">收藏</a>
         </li>
         <li>
           <a @click="$router.push({ name: 'area'})">搜尋</a>
@@ -58,12 +61,12 @@ export default {
       signout: "none",
       signin: "",
       like: "none",
-      isLogin:false,
-      username:sessionStorage.getItem('username')
-      }
-    },
-    methods:{
-      async logout() {
+      isLogin: false,
+      username: sessionStorage.getItem("username")
+    };
+  },
+  methods: {
+    async logout() {
       firebase
         .auth()
         .signOut()

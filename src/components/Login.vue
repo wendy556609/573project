@@ -50,7 +50,7 @@ export default {
       errors: [],
       loading: false,
       user: "",
-      users:[]
+      users: []
     };
   },
   methods: {
@@ -75,11 +75,11 @@ export default {
         this.loading = false;
       }
     },
-    readUser(){
+    readUser() {
       this.users = firebase.auth().currentUser;
-            
-      sessionStorage.setItem('username',this.users.displayName)
-      sessionStorage.setItem('uid',this.users.uid)
+
+      sessionStorage.setItem("username", this.users.displayName);
+      sessionStorage.setItem("uid", this.users.uid);
     }
   },
   mounted() {},

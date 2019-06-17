@@ -73,7 +73,7 @@ export default {
       search: faSearch,
       closeBtn1: faTimes,
       closeBtn2: faTimesCircle,
-      like:faHeart,
+      like: faHeart,
       heartStyle: "",
       //變數
       shops: [{ value: "shops" }],  
@@ -84,11 +84,11 @@ export default {
       shopUrls:"",
       likeData:[],
       //搜尋
-      searchtext: '',
-      searchData:[],
+      searchtext: "",
+      searchData: [],
       //收藏
-      likeLink:"/like/",
-      useruid:sessionStorage.getItem('uid'),
+      likeLink: "/like/",
+      useruid: sessionStorage.getItem("uid")
     };
   },
   methods: {
@@ -97,21 +97,44 @@ export default {
       this.showintro = true;
       this.wrapper = false;
       // this.photo = shop.url
-      this.likeData=  shop
-      this.contain= shop.name
-      this.shopUrls="http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q="+shop.address+"&z=16&output=embed&t="
-      this.shopId=  shop.id
-      if(sessionStorage.getItem("isLogin")==="true"){
-        var link=this.likeLink+this.useruid.trim()+"/"+this.shopId
-        database.ref(link).on('value',snapshop =>{
-          if(snapshop.val()){
-              this.heartStyle="like"
-              }
-            else if(snapshop.val()===null){
-              this.heartStyle="dislike"
-              }
-        })
-    }
+      this.likeData = shop;
+
+      this.contain = shop.name;
+      this.wifi = shop.wifi;
+      this.seat = shop.seat;
+      this.quiet = shop.quiet;
+      this.tasty = shop.tasty;
+      this.cheap = shop.cheap;
+      this.music = shop.music;
+      this.time = shop.open_time;
+      this.address = shop.address;
+      this.url = shop.url;
+      this.mond = shop.mond;
+      this.tued = shop.tued;
+      this.wedd = shop.wedd;
+      this.thud = shop.thud;
+      this.frid = shop.frid;
+      this.satd = shop.satd;
+      this.sund = shop.sund;
+      this.limited_time = shop.limit;
+      this.socket = shop.socket;
+      this.standing_desk = shop.stand;
+      this.mrt = shop.mrt;
+      this.shopUrls =
+        "http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" +
+        shop.address +
+        "&z=16&output=embed&t=";
+      this.shopId = shop.id;
+      if (sessionStorage.getItem("isLogin") === "true") {
+        var link = this.likeLink + this.useruid.trim() + "/" + this.shopId;
+        database.ref(link).on("value", snapshop => {
+          if (snapshop.val()) {
+            this.heartStyle = "like";
+          } else if (snapshop.val() === null) {
+            this.heartStyle = "dislike";
+          }
+        });
+      }
     },
     //隱藏資訊
     hide() {
@@ -146,12 +169,22 @@ export default {
           if(snapshop.val()){
             database.ref(link).set({})
           }
-          else if(snapshop.val()===null){
-            database.ref(link).update(like)
-          }
-      })
-      }
+        });
+      } else this.searchData = this.shops;
     },
+     getLike() {
+      if (sessionStorage.getItem("isLogin") === "true") {
+        var like = this.likeData;
+        var link = this.likeLink + this.useruid.trim() + "/" + this.shopId;
+        database.ref(link).once("value", function(snapshop) {
+          if (snapshop.val()) {
+            database.ref(link).set({});
+          } else if (snapshop.val() === null) {
+            database.ref(link).update(like);
+          }
+        });
+      }
+    }
   },
   mounted() {
     this.getData();
@@ -405,7 +438,14 @@ img::selection {
 .like {
   color: red;
 }
-.dislike{
-  color: white
+
+.dislike {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.in {
+  position: relative;
+  width: 100%;
+  top: 0;
 }
 </style>
