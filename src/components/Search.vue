@@ -176,6 +176,7 @@ export default {
       closeBtn1: faTimes,
       closeBtn2: faTimesCircle,
       like: faHeart,
+      heartStyle: "",
       //變數
       shops: [{ value: "shops" }],
       areaName: sessionStorage.getItem("areaName"),
@@ -187,7 +188,9 @@ export default {
       //搜尋
       searchtext: "",
       searchData: [],
-     
+      //收藏
+      likeLink: "/like/",
+      useruid: sessionStorage.getItem("uid")
     };
   },
   methods: {
@@ -197,6 +200,7 @@ export default {
       this.wrapper = false;
       // this.photo = shop.url
       this.likeData = shop;
+
       this.contain = shop.name;
       this.wifi = shop.wifi;
       this.seat = shop.seat;
@@ -222,8 +226,18 @@ export default {
         "http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" +
         shop.address +
         "&z=16&output=embed&t=";
-      },
-    
+      this.shopId = shop.id;
+      if (sessionStorage.getItem("isLogin") === "true") {
+        var link = this.likeLink + this.useruid.trim() + "/" + this.shopId;
+        database.ref(link).on("value", snapshop => {
+          if (snapshop.val()) {
+            this.heartStyle = "like";
+          } else if (snapshop.val() === null) {
+            this.heartStyle = "dislike";
+          }
+        });
+      }
+    },
     //隱藏資訊
     hide() {
       this.showintro = false;
@@ -246,6 +260,19 @@ export default {
           }
         });
       } else this.searchData = this.shops;
+    },
+     getLike() {
+      if (sessionStorage.getItem("isLogin") === "true") {
+        var like = this.likeData;
+        var link = this.likeLink + this.useruid.trim() + "/" + this.shopId;
+        database.ref(link).once("value", function(snapshop) {
+          if (snapshop.val()) {
+            database.ref(link).set({});
+          } else if (snapshop.val() === null) {
+            database.ref(link).update(like);
+          }
+        });
+      }
     }
   },
   mounted() {
@@ -500,6 +527,10 @@ img::selection {
 
 .like {
   color: red;
+}
+
+.dislike {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .in {
