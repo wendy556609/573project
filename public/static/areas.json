@@ -1,0 +1,95 @@
+{
+    "north": [
+        {
+            "id": 0,
+            "name": "taipei",
+            "info": "臺北"
+        },
+        {
+            "id": 1,
+            "name": "keelung",
+            "info": "基隆"
+        },
+        {
+            "id": 2,
+            "name": "taoyuan",
+            "info": "桃園"
+        },
+        {
+            "id": 4,
+            "name": "hsinchu",
+            "info": "新竹"
+        },
+        {
+            "id": 5,
+            "name": "sinpei",
+            "info": "新竹"
+        },
+        {
+            "id": 6,
+            "name": "yilan",
+            "info": "宜蘭"
+        }
+    ],
+    "east": [
+        {
+            "id": 0,
+            "name": "hualien",
+            "info": "花蓮"
+        },
+        {
+            "id": 1,
+            "name": "taitung",
+            "info": "臺東"
+        }
+    ],
+    "mid":[
+        {
+            "id":0,
+            "name":"miaoli",
+            "info":"苗栗"
+        },
+        {
+            "id":1,
+            "name":"taichung",
+            "info":"臺中"
+        },
+        {
+            "id":2,
+            "name":"changhua",
+            "info":"彰化"
+        },
+        {
+            "id":3,
+            "name":"nantou",
+            "info":"南投"
+        },
+        {
+            "id":4,
+            "name":"yunlin",
+            "info":"雲林"
+        }
+    ],
+    "south":[
+        {
+            "id":0,
+            "name":"chiayi",
+            "info":"嘉義"
+        },
+        {
+            "id":1,
+            "name":"tainan",
+            "info":"臺南"
+        },
+        {
+            "id":2,
+            "name":"kaohsiung",
+            "info":"高雄"
+        },
+        {
+            "id":3,
+            "name":"pingtung",
+            "info":"屏東"
+        }
+    ]
+}
