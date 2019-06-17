@@ -6,22 +6,22 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    titleName: 'DogApp'
+    // titleName: 'DogApp'
   },
   getters: {
-    titleName: state => state.titleName
+    // titleName: state => state.titleName
   },
   mutations: {
-    SET_TITLE_NAME: (state, titleName) => {
-      if(router.name == 'home')
-        state.titleName = 'DogApp';
-      else
-        state.titleName = titleName;
-    } 
+    // SET_TITLE_NAME: (state, titleName) => {
+    //   if(router.name == 'home')
+    //     state.titleName = 'DogApp';
+    //   else
+    //     state.titleName = titleName;
+    // } 
   },
   actions: {
-    setTitleName({ commit }, titalName) {
-      commit('SET_TITLE_NAME', titalName);
-    }
+    // setTitleName({ commit }, titalName) {
+    //   commit('SET_TITLE_NAME', titalName);
+    // }
   }
 })

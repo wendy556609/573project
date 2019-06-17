@@ -1,7 +1,7 @@
 <template>
   <div class="LOGIN">
     <div class="wrapper">
-      <div class="top u-cf">
+      <!-- <div class="top u-cf">
         <div class="navbar">
           <div class="nav_LOGO">
             <a @click="$router.push({ name: 'home'})">Vá ao café</a>
@@ -21,7 +21,8 @@
             </li>
           </ul>
         </div>
-      </div>
+      </div>-->
+      <Bar/>
       <div class="down u-cf">
         <div class="content">
           <form>
@@ -59,6 +60,7 @@
 <script>
 import firebase, { functions } from "firebase";
 import router from "../router.js";
+import Bar from "./Bar";
 
 export default {
   name: "Login",
@@ -69,9 +71,9 @@ export default {
       errors: [],
       loading: false,
       user: "",
-      signout: "none",
+      signout: "",
       signin: "",
-      like: "none"
+      like: ""
     };
   },
   methods: {
@@ -83,37 +85,28 @@ export default {
           .auth()
           .signInWithPopup(new firebase.auth.GoogleAuthProvider());
         this.user = response.user;
-        router.push("/login");
+        router.push("/area");
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             console.log("yes");
           }
         });
-        this.signout="";
-        this.signin="none";
-        this.like="";
+        this.signout = "";
+        this.signin = "none";
+        this.like = "";
+        sessionStorage.setItem("signIn", this.signin);
+        sessionStorage.setItem("signOut", this.signout);
+        sessionStorage.setItem("like", this.like);
       } catch (error) {
         this.errors.push(error.message);
         this.loading = false;
       }
-    },
-    async logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(function() {
-          firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-              console.log("yes");
-            } else {
-              console.log("no");
-            }
-          });
-        });
-        this.signout="none";
-        this.signin="";
-        this.like="none";
     }
+  },
+   mounted() {
+  },
+  components: {
+    Bar
   }
 };
 </script>

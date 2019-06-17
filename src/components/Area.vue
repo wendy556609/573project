@@ -1,18 +1,19 @@
 <template>
   <div class="AREA">
     <div class="wrapper">
-      <div class="top u-cf">
+      <!-- <div class="top u-cf">
         <div class="navbar">
           <div class="nav_LOGO">
             <a @click="$router.push({ name: 'home'})">Vá ao café</a>
           </div>
           <ul class="nav_menu">
             <li>
-              <a @click="$router.push({ name: 'login'})">登入</a>
+              <a href="#">登入</a>
             </li>
           </ul>
         </div>
-      </div>
+      </div> -->
+      <Bar/>
       <div class="down u-cf">
         <div class="content">
           <ul class="content_menu">
@@ -67,16 +68,13 @@
 <script>
 import axios from "axios";
 import router from "../router";
-import { mapActions } from "vuex";
+import { mapMutations } from "vuex";
+import Bar from './Bar'
+
 export default {
   // name: 'Area'
   data() {
     return {
-      // a:[{
-      //       "id": "0",
-      //       "name": "taipei",
-      //       "info": "臺北市"
-      //   },],
       norths: [{ value: "norths" }],
       easts: [{ value: "easts" }],
       mids: [{ value: "mids" }],
@@ -84,26 +82,24 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["setTitleName"]),
     getData() {
       this.$axios.get("./static/areas.json").then(response => {
         this.norths = response.data.north;
         this.easts = response.data.east;
         this.mids = response.data.mid;
         this.souths = response.data.south;
-        console.log(this.norths)
       });
     },
     onSelectArea(area) {
-      this.setTitleName(area.name);
-      router.push({ name: "search", params: { name: area.name, area } });
+      sessionStorage.setItem('areaName', area.name)
+      router.push({ name: "search", params: { name: area.name} });
     }
   },
   mounted() {
     this.getData();
   },
-  created() {
-    this.setTitleName("dogApp");
+  components: {
+    Bar
   }
 };
 </script>
@@ -120,7 +116,7 @@ export default {
 
 *::selection {
   color: #fff;
-  background: rgba(255, 255, 255, 0);
+    	background: rgba(255, 255, 255, 0);
 
 }
 
@@ -139,6 +135,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   margin: 0 auto;
+  overflow:auto;
 }
 
 .wrapper {
@@ -164,7 +161,7 @@ export default {
   font-weight: bolder;
   color: #fff;
   font-size: 32px;
-  margin-top: 2px;
+  margin-top: 5px;
 }
 
 .nav_menu {

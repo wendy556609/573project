@@ -7,126 +7,114 @@
             <font-awesome-icon :icon="closeBtn1" class="closeBtn closeBtn1" @click="hide"/>
           </div>
           <div class="intro_content">
-            <img :src="photo">
+            <!-- <img :src="photo"> -->
+            <li style="width: 100%;height: auto; color:black">{{this.contain}}</li>
           </div>
           <div class="intro_btm">
             <font-awesome-icon :icon="closeBtn2" class="closeBtn closeBtn2" @click="hide"/>
           </div>
         </div>
-        <!-- <a id="backtotop" title="返回頂部">
-                <i class="fas fa-chevron-circle-up fa-2x" alt="Back to Top"></i>
-        </a>-->
       </div>
     </transition>
     <div class="wrapper">
-      <div class="top u-cf">
-        <div class="navbar">
-          <div class="nav_LOGO">
-            <a @click="$router.push({ name: 'home'})">Vá ao café</a>
-          </div>
-          <ul class="nav_menu">
-            <li>
-              <!-- <a @click="$router.push({ name: 'login'})">登入</a> -->
-              <a>{{area.name}}</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <Bar/>
       <div class="down u-cf">
         <div class="content">
           <div class="searchbar">
-            <input type="text" class="searchTerm" placeholder="Search">
-            <button type="submit" class="searchButton">
+            <!-- <input type="text" class="searchTerm" placeholder="Search"> -->
+            <input v-model="searchtext" v-on:keyup.13="btn" type="text" class="searchTerm" placeholder="Search"/>
+            <button @click="btn" type="submit" class="searchButton">
               <font-awesome-icon :icon="search"/>
             </button>
-          </div>
-          <div class="SEARCH">
+              <div class="SEARCH">
             <div
-              v-for="con in cons"
-              :key="con.id"
-              @click="content(con)"
+              v-for="shop in searchData"
+              :key="shop.id"
+              @click="content(shop)"
               class="search_content search_content1"
               id="search_content1"
             >
-              <img :src="con.url" style="width: 100%;height: auto;">
-            </div>
-            <!-- <div class="search_content search_content2" id="search_content2">
-              <img src="../assets/im/A2.jpg" alt style="width: 100%;height: auto;">
-            </div>
-            <div class="search_content search_content3" id="search_content3">
-              <img src="../assets/im/A3.jpg" alt style="width: 100%;height: auto;">
-            </div>-->
+              <!-- <img :src="shop.url" style="width: 100%;height: auto;"> -->
+              <li style="width: 100%;height: auto; color:white">{{shop.name}}</li>
           </div>
-        </div>
+          
+            </div>
+          </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
-import { faChevronCircleUp } from "@fortawesome/free-solid-svg-icons";
-// import Photo from '@/assets/im/A1.jpg'
+import Bar from './Bar'
+
 export default {
   props: ["area"],
   data() {
     return {
+      //set
       wrapper: true,
-      // areas:"area",
       showintro: false,
+      //icon
       search: faSearch,
       closeBtn1: faTimes,
       closeBtn2: faTimesCircle,
-      circleup: faChevronCircleUp,
-      cons: [
-        {
-          id: 0,
-          // url: require('../assets/im/A1.jpg')
-          url: "https://www.searchome.net/Article/doc17274/P.jpg"
-        },
-        {
-          id: 1,
-          url: require("../assets/im/A2.jpg")
-        },
-        {
-          id: 2,
-          url: require("../assets/im/A3.jpg")
-        }
-      ],
-      photo: null,
-      a: []
-      // photo: require('../assets/im/A1.jpg'),
+      //變數
+      shops: [{ value: "shops" }],
+      photo:"",
+      areaName: sessionStorage.getItem('areaName'),
+      contain:"",
+      searchtext: '',
+      searchData:[]
     };
   },
-  //  data:{
-
-  // },
   methods: {
-    content(con) {
-      (this.showintro = true),
-        (this.wrapper = false),
-        (this.photo = con.url),
-        // alert("ok");
-        console.log(this.showintro);
+    //顯示資訊內容
+    content(shop) {
+      this.showintro = true
+      this.wrapper = false
+      // this.photo = shop.url
+      this.contain= shop.name
     },
+    //隱藏資訊
     hide() {
-      (this.showintro = false),
-        (this.wrapper = true),
-        console.log(this.showintro);
+      this.showintro = false
+      this.wrapper = true
+    },
+    getData() {
+      // 取得咖啡廳資料
+      this.$axios.get("./static/coffee.json").then(response => {
+        this.shops = response.data[this.areaName];
+        this.searchData=this.shops
+      });
+    },
+  btn(){
+      var search=this.searchtext;
+      if(search){
+         search=search.trim().toLowerCase();
+         this.searchData=this.shops.filter(function(shop){
+           if(shop.name.toLowerCase().indexOf(search)!=-1){
+             return shop;
+           }
+         })
+      }
+      else
+        this.searchData=this.shops
     }
-    // getData(){
-    //       this.$axios.get('https://cafenomad.tw/api/v1.2/cafes').then(response=>{
-    //         this.a=response.data;
-    //         console.log(this.a)
-    //       })
-    //   }
+  },
+  mounted() {
+    this.getData();
   },
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    Bar
   }
 };
 </script>
@@ -162,24 +150,20 @@ export default {
   font-family: "微軟正黑體", cursive;
 }
 
-
 .u-cf:after {
   content: "";
   display: block;
   clear: both;
 }
 
-
 a::selection {
   color: #fff;
-    	background: rgba(255, 255, 255, 0);
-
+  background: rgba(255, 255, 255, 0);
 }
 
 img::selection {
   color: #fff;
-    	background: rgba(255, 255, 255, 0);
-
+  background: rgba(255, 255, 255, 0);
 }
 
 .MAIN {
@@ -205,7 +189,6 @@ img::selection {
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 15;
 }
-
 .navbar {
   width: 90%;
   margin: 0 auto;
@@ -217,7 +200,7 @@ img::selection {
   font-weight: bolder;
   color: #fff;
   font-size: 32px;
-  margin-top: 2px;
+  margin-top: 5px;
 }
 
 .nav_menu {
@@ -385,21 +368,5 @@ img::selection {
 
 .closeBtn:hover {
   color: rgba(121, 121, 121, 0.6);
-}
-
-/*----------返回頂部----------*/
-
-#backtotop {
-  border-radius: 50%;
-  display: scroll;
-  position: fixed;
-  right: 4%;
-  color: rgba(255, 255, 255, 0.8);
-  opacity: 1;
-  cursor: pointer;
-}
-
-#backtotop:hover {
-  opacity: 0.7;
 }
 </style>

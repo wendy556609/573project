@@ -1,105 +1,95 @@
 {
     "north": [
         {
-            "id": "0",
+            "id": 0,
             "name": "taipei",
-            "info": "臺北市"
+            "info": "臺北"
         },
         {
-            "id": "1",
-            "name": "sinpei",
-            "info": "新北市"
-        },
-        {
-            "id": "2",
+            "id": 1,
             "name": "keelung",
-            "info": "基隆市"
+            "info": "基隆"
         },
         {
-            "id": "3",
+            "id": 2,
             "name": "taoyuan",
-            "info": "桃園市"
+            "info": "桃園"
         },
         {
-            "id": "4",
+            "id": 4,
             "name": "hsinchu",
-            "info": "新竹市"
+            "info": "新竹"
         },
         {
-            "id": "5",
+            "id": 5,
             "name": "sinpei",
-            "info": "新竹縣"
+            "info": "新竹"
         },
         {
-            "id": "6",
+            "id": 6,
             "name": "yilan",
-            "info": "宜蘭縣"
+            "info": "宜蘭"
         }
     ],
     "east": [
         {
             "id": 0,
             "name": "hualien",
-            "info": "花蓮縣"
+            "info": "花蓮"
         },
         {
             "id": 1,
             "name": "taitung",
-            "info": "臺東縣"
+            "info": "臺東"
         }
     ],
     "mid":[
         {
             "id":0,
             "name":"miaoli",
-            "info":"苗栗縣"
+            "info":"苗栗"
         },
         {
             "id":1,
             "name":"taichung",
-            "info":"臺中市"
+            "info":"臺中"
         },
         {
             "id":2,
             "name":"changhua",
-            "info":"彰化縣"
+            "info":"彰化"
         },
         {
             "id":3,
             "name":"nantou",
-            "info":"南投縣"
+            "info":"南投"
         },
         {
             "id":4,
             "name":"yunlin",
-            "info":"雲林縣"
+            "info":"雲林"
         }
     ],
     "south":[
         {
             "id":0,
             "name":"chiayi",
-            "info":"嘉義市"
+            "info":"嘉義"
         },
         {
             "id":1,
-            "name":"sinpei",
-            "info":"嘉義縣"
+            "name":"tainan",
+            "info":"臺南"
         },
         {
             "id":2,
-            "name":"tainan",
-            "info":"臺南市"
+            "name":"kaohsiung",
+            "info":"高雄"
         },
         {
             "id":3,
-            "name":"kaohsiung",
-            "info":"高雄市"
-        },
-        {
-            "id":4,
             "name":"pingtung",
-            "info":"屏東縣"
+            "info":"屏東"
         }
     ]
 }

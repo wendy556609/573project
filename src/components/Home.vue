@@ -11,9 +11,11 @@
       </label>
       <a class="menu-item menu-item1" @click="$router.push({ name: 'area'})" title="搜尋">
         搜尋
+        <font-awesome-icon :icon="search" size="1x"/>
       </a>
       <a class="menu-item menu-item2" @click="$router.push({ name: 'login'})"  title="登入">
         登入
+        <font-awesome-icon :icon="usercircle" size="1x"/>
       </a>
     </div>
   </div>
@@ -51,8 +53,7 @@ export default {
 
 *::selection {
   color: #fff;
-  	background: rgba(255, 255, 255, 0);
-
+  background: rgba(255, 255, 255, 0);
 }
 
 .u-cf:after {
@@ -118,15 +119,15 @@ export default {
 .menu-item {
   position: absolute;
   border: 2px solid #fff;
-  line-height: 45px;
-  font-size: 22px;
+  line-height: 55px;
+  font-size: 25px;
   font-weight: bold;
-  width: 160px;
-  height: 50px;
+  width: 200px;
+  height: 60px;
   background: rgba(0, 0, 0, 0.2);
   transform: scale(0.001, 0.001);
   transition: ease-out 300ms;
-  margin-left: 25px;
+  margin-left: 5px;
   top: 100px;
   text-decoration: none;
   color: #fff;
@@ -141,8 +142,8 @@ export default {
 }
 
 .menu-item:active {
-  line-height: 45px;
-  font-size: 20px;
+  padding: 10.5px 0px;
+  font-size: 18px;
 }
 
 .menu-open:checked+.menu-open-button {
