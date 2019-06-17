@@ -8,7 +8,16 @@
           </div>
           <ul class="nav_menu">
             <li>
+              <a @click="$router.push({ name: 'search'})">搜尋</a>
+            </li>
+            <li :style="{display:this.like}">
+              <a href="#">收藏</a>
+            </li>
+            <li :style="{display:this.signin}" >
               <a @click="$router.push({ name: 'login'})">登入</a>
+            </li>
+            <li :style="{display:this.signout}">
+              <a  @click="logout">登出</a>
             </li>
           </ul>
         </div>
@@ -48,7 +57,7 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase, { functions } from "firebase";
 import router from "../router.js";
 
 export default {
@@ -59,7 +68,10 @@ export default {
       password: "",
       errors: [],
       loading: false,
-      user: ""
+      user: "",
+      signout: "none",
+      signin: "",
+      like: "none"
     };
   },
   methods: {
@@ -71,18 +83,42 @@ export default {
           .auth()
           .signInWithPopup(new firebase.auth.GoogleAuthProvider());
         this.user = response.user;
-        router.push("/search");
+        router.push("/login");
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            console.log("yes");
+          }
+        });
+        this.signout="";
+        this.signin="none";
+        this.like="";
       } catch (error) {
         this.errors.push(error.message);
         this.loading = false;
       }
+    },
+    async logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(function() {
+          firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              console.log("yes");
+            } else {
+              console.log("no");
+            }
+          });
+        });
+        this.signout="none";
+        this.signin="";
+        this.like="none";
     }
   }
 };
 </script>
 
 <style lang='postcss' scoped>
-
 @charset "UTF-8";
 * {
   margin: auto;
@@ -149,6 +185,8 @@ export default {
 
 .nav_menu li {
   list-style: none;
+  float: left;
+  padding: 0 0 0 30px;
 }
 
 .nav_menu li a {
