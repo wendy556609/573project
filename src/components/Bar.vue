@@ -9,13 +9,16 @@
               <a @click="$router.push({ name: 'area'})">搜尋</a>
             </li>
             <li :style="{display:this.like}">
-              <a href="#">收藏</a>
+              <a @click="$router.push({ name: 'like'})">收藏</a>
             </li>
-            <li :style="{display:this.signin}" >
+            <li :style="{display:this.signin}">
               <a @click="$router.push({ name: 'login'})">登入</a>
             </li>
             <li :style="{display:this.signout}">
               <a  @click="logout">登出</a>
+            </li>
+            <li :style="{display:this.signout}">
+              <a>{{this.username}}</a>
             </li>
           </ul>
         </div>
@@ -30,9 +33,11 @@ export default {
     name:"Bar",
     data(){
       return{
-      signout: '',
-      signin: '',
-      like: ''
+      signout: "none",
+      signin: "",
+      like: "none",
+      isLogin:false,
+      username:sessionStorage.getItem('username')
       }
     },
     methods:{
@@ -49,18 +54,30 @@ export default {
             }
           });
         });
+        router.push("/area");
+        sessionStorage.setItem("isLogin", false);
+        this.setState()
+        sessionStorage.setItem('username',"")
+        sessionStorage.setItem('uid',"")
+    },
+    setState() {
+      this.isLogin=sessionStorage.getItem("isLogin")
+      if(this.isLogin === 'true'){
+        console.log("login");
+        this.signout="";
+        this.signin="none";
+        this.like="";
+      }
+      if(this.isLogin === 'false'){
+        console.log("not");
         this.signout="none";
         this.signin="";
         this.like="none";
-        this.setState();
+      }
     },
-    setState() {
-      sessionStorage.setItem("signIn", this.signin);
-      sessionStorage.setItem("signOut", this.signout);
-      sessionStorage.setItem("like", this.like);
-    }
     },
     mounted() {
+      this.setState()
   },
 }
 </script>

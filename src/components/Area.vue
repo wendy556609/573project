@@ -1,18 +1,6 @@
 <template>
   <div class="AREA">
     <div class="wrapper">
-      <!-- <div class="top u-cf">
-        <div class="navbar">
-          <div class="nav_LOGO">
-            <a @click="$router.push({ name: 'home'})">Vá ao café</a>
-          </div>
-          <ul class="nav_menu">
-            <li>
-              <a href="#">登入</a>
-            </li>
-          </ul>
-        </div>
-      </div> -->
       <Bar/>
       <div class="down u-cf">
         <div class="content">

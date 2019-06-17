@@ -23,7 +23,7 @@
 
 <script>
 import router from "../router";
-import { mapActions } from "vuex";
+
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";

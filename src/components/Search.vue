@@ -7,8 +7,15 @@
             <font-awesome-icon :icon="closeBtn1" class="closeBtn closeBtn1" @click="hide"/>
           </div>
           <div class="intro_content">
+            <div class="content_box">
+              <div class="title">{{this.contain}}</div>
+              <button @click="getLike" class="like_btn">
+                <font-awesome-icon :icon="like" :class="heartStyle"/>&nbsp;收藏
+              </button>
+            </div>
             <!-- <img :src="photo"> -->
             <li style="width: 100%;height: auto; color:black">{{this.contain}}</li>
+            <iframe width="800" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" :src="this.shopUrls"></iframe>
           </div>
           <div class="intro_btm">
             <font-awesome-icon :icon="closeBtn2" class="closeBtn closeBtn2" @click="hide"/>
@@ -21,7 +28,6 @@
       <div class="down u-cf">
         <div class="content">
           <div class="searchbar">
-            <!-- <input type="text" class="searchTerm" placeholder="Search"> -->
             <input v-model="searchtext" v-on:keyup.13="btn" type="text" class="searchTerm" placeholder="Search"/>
             <button @click="btn" type="submit" class="searchButton">
               <font-awesome-icon :icon="search"/>
@@ -53,7 +59,11 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Bar from './Bar'
+import { app } from '../firebase/index';
+import firebase from 'firebase';
+const database = firebase.database(app);//建立功能
 
 export default {
   props: ["area"],
@@ -66,13 +76,22 @@ export default {
       search: faSearch,
       closeBtn1: faTimes,
       closeBtn2: faTimesCircle,
+      like:faHeart,
+      heartStyle: "",
       //變數
-      shops: [{ value: "shops" }],
-      photo:"",
+      shops: [{ value: "shops" }],  
       areaName: sessionStorage.getItem('areaName'),
+      //咖啡廳內容
+      photo:"",
       contain:"",
+      shopUrls:"",
+      likeData:[],
+      //搜尋
       searchtext: '',
-      searchData:[]
+      searchData:[],
+      //收藏
+      likeLink:"/like/",
+      useruid:sessionStorage.getItem('uid'),
     };
   },
   methods: {
@@ -81,7 +100,21 @@ export default {
       this.showintro = true
       this.wrapper = false
       // this.photo = shop.url
+      this.likeData=  shop
       this.contain= shop.name
+      this.shopUrls="http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q="+shop.address+"&z=16&output=embed&t="
+      this.shopId=  shop.id
+      if(sessionStorage.getItem("isLogin")==="true"){
+        var link=this.likeLink+this.useruid.trim()+"/"+this.shopId
+        database.ref(link).on('value',snapshop =>{
+          if(snapshop.val()){
+              this.heartStyle="like"
+              }
+            else if(snapshop.val()===null){
+              this.heartStyle="dislike"
+              }
+        })
+    }
     },
     //隱藏資訊
     hide() {
@@ -95,7 +128,7 @@ export default {
         this.searchData=this.shops
       });
     },
-  btn(){
+    btn(){
       var search=this.searchtext;
       if(search){
          search=search.trim().toLowerCase();
@@ -107,16 +140,30 @@ export default {
       }
       else
         this.searchData=this.shops
-    }
+    },
+    getLike(){
+      if(sessionStorage.getItem("isLogin")==="true"){
+        var like=this.likeData;
+        var link=this.likeLink+this.useruid.trim()+"/"+this.shopId;
+        database.ref(link).once('value',function(snapshop){
+          if(snapshop.val()){
+            database.ref(link).set({})
+          }
+          else if(snapshop.val()===null){
+            database.ref(link).update(like)
+          }
+      })
+      }
+    },
   },
   mounted() {
     this.getData();
   },
   components: {
     FontAwesomeIcon,
-    Bar
+    Bar 
   }
-};
+}
 </script>
 
 <style scoped>
@@ -368,5 +415,50 @@ img::selection {
 
 .closeBtn:hover {
   color: rgba(121, 121, 121, 0.6);
+}
+
+.content_box {
+  width: 100%;
+  height: auto;
+  color: black;
+  padding: 20px 0;
+}
+
+.content_box:not(:last-child) {
+  border-bottom: 1px solid rgba(121, 121, 121, 0.6);
+  display: grid;
+  grid-template-columns: 48% 48%;
+  grid-column-gap: 2%;
+}
+
+.content_box:first-child {
+  padding: 40px 0 20px;
+  grid-template-columns: 100%;
+}
+
+.title {
+  width: 100%;
+  height: auto;
+  font-size: 28px !important;
+  font-weight: bold;
+}
+
+.like_btn {
+  width: 53.5px;
+  height: auto;
+  background-color: rgba(185, 163, 131, 1);
+  color: #000;
+  padding: 7px 7px 3.5px;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-left: 0;
+  border-radius: 5px;
+}
+
+.like {
+  color: red;
+}
+.dislike{
+  color: white
 }
 </style>

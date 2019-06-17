@@ -10,7 +10,6 @@ import "./firebase"
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
-// Vue.use(VueResource)
 
 new Vue({ 
   router,

@@ -16,17 +16,12 @@
             "info": "桃園"
         },
         {
-            "id": 4,
+            "id": 3,
             "name": "hsinchu",
             "info": "新竹"
         },
         {
-            "id": 5,
-            "name": "sinpei",
-            "info": "新竹"
-        },
-        {
-            "id": 6,
+            "id": 4,
             "name": "yilan",
             "info": "宜蘭"
         }

@@ -1,27 +1,6 @@
 <template>
   <div class="LOGIN">
     <div class="wrapper">
-      <!-- <div class="top u-cf">
-        <div class="navbar">
-          <div class="nav_LOGO">
-            <a @click="$router.push({ name: 'home'})">Vá ao café</a>
-          </div>
-          <ul class="nav_menu">
-            <li>
-              <a @click="$router.push({ name: 'search'})">搜尋</a>
-            </li>
-            <li :style="{display:this.like}">
-              <a href="#">收藏</a>
-            </li>
-            <li :style="{display:this.signin}" >
-              <a @click="$router.push({ name: 'login'})">登入</a>
-            </li>
-            <li :style="{display:this.signout}">
-              <a  @click="logout">登出</a>
-            </li>
-          </ul>
-        </div>
-      </div>-->
       <Bar/>
       <div class="down u-cf">
         <div class="content">
@@ -71,9 +50,7 @@ export default {
       errors: [],
       loading: false,
       user: "",
-      signout: "",
-      signin: "",
-      like: ""
+      users:[]
     };
   },
   methods: {
@@ -91,16 +68,18 @@ export default {
             console.log("yes");
           }
         });
-        this.signout = "";
-        this.signin = "none";
-        this.like = "";
-        sessionStorage.setItem("signIn", this.signin);
-        sessionStorage.setItem("signOut", this.signout);
-        sessionStorage.setItem("like", this.like);
+        sessionStorage.setItem("isLogin", true);
+        this.readUser()
       } catch (error) {
         this.errors.push(error.message);
         this.loading = false;
       }
+    },
+    readUser(){
+      this.users = firebase.auth().currentUser;
+            
+      sessionStorage.setItem('username',this.users.displayName)
+      sessionStorage.setItem('uid',this.users.uid)
     }
   },
    mounted() {
