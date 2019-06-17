@@ -3,7 +3,7 @@
         {
             "id": 0,
             "name": "taipei",
-            "info": "臺北"
+            "info": "雙北"
         },
         {
             "id": 1,
@@ -22,11 +22,6 @@
         },
         {
             "id": 5,
-            "name": "sinpei",
-            "info": "新竹"
-        },
-        {
-            "id": 6,
             "name": "yilan",
             "info": "宜蘭"
         }

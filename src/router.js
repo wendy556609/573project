@@ -5,7 +5,8 @@ import Details from './components/Details';
 import Post from './components/Post';
 import Area from './components/Area';
 import Search from './components/Search';
-import Login from './components/Login'
+import Login from './components/Login';
+
 
 Vue.use(Router);
 

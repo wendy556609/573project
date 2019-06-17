@@ -9,14 +9,8 @@
           <li class="menu-li" style="font-size: 10px">ENJOY YOUR REST TIME</li>
         </ol>
       </label>
-      <a class="menu-item menu-item1" @click="$router.push({ name: 'area'})" title="搜尋">
-        搜尋
-        <font-awesome-icon :icon="search" size="1x"/>
-      </a>
-      <a class="menu-item menu-item2" @click="$router.push({ name: 'login'})"  title="登入">
-        登入
-        <font-awesome-icon :icon="usercircle" size="1x"/>
-      </a>
+      <a class="menu-item menu-item1" @click="$router.push({ name: 'area'})" title="搜尋">搜尋</a>
+      <a class="menu-item menu-item2" @click="$router.push({ name: 'login'})" title="登入">登入</a>
     </div>
   </div>
 </template>
@@ -48,7 +42,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
   position: relative;
-  font-family: "微軟正黑體", cursive;
+  font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
 }
 
 *::selection {
@@ -57,11 +51,10 @@ export default {
 }
 
 .u-cf:after {
-  content: '';
+  content: "";
   display: block;
   clear: both;
 }
-
 
 .HOME {
   width: 100%;
@@ -111,9 +104,9 @@ export default {
   transition: all 0.5s;
 }
 
-.menu-open-button:hover>.menu-text {
+.menu-open-button:hover > .menu-text {
   background: rgba(0, 0, 0, 0.4);
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .menu-item {
@@ -132,13 +125,12 @@ export default {
   text-decoration: none;
   color: #fff;
   left: 0px;
-
 }
 
 .menu-item:hover {
   background: rgba(0, 0, 0, 0.4);
   opacity: 0.7;
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .menu-item:active {
@@ -146,23 +138,94 @@ export default {
   font-size: 18px;
 }
 
-.menu-open:checked+.menu-open-button {
+.menu-open:checked + .menu-open-button {
   transition-timing-function: linear;
   transform: scale(0.93, 0.93) translate3d(0, -20px, 0);
   transition-duration: 200ms;
 }
 
-.menu-open:checked~.menu-item {
+.menu-open:checked ~ .menu-item {
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.375);
   transform: scale(1, 1) translate3d(0, 0, 0);
   transition-duration: 300ms;
 }
 
-.menu-open:checked~.menu-item1 {
+.menu-open:checked ~ .menu-item1 {
   transform: translate3d(-160px, 120px, 0);
 }
 
-.menu-open:checked~.menu-item2 {
+.menu-open:checked ~ .menu-item2 {
   transform: translate3d(160px, 120px, 0);
+}
+
+@media only screen and (max-width: 768px) {
+  .menu-open-button,
+  .menu-open-button:hover,
+  .menu-open:checked + .menu-open-button {
+    transform: scale(1, 1) translate3d(0, 0, 0);
+  }
+  .menu-item1,
+  .menu-item1:hover,
+  .menu-item1:active,
+  .menu-open:checked ~ .menu-item1 {
+    transform: scale(1, 1);
+    font-size: 22px;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    line-height: 46px;
+    transform: translate3d(-160px, 120px, 0);
+  }
+  .menu-item2,
+  .menu-item2:hover,
+  .menu-item2:active,
+  .menu-open:checked ~ .menu-item2 {
+    transform: scale(1, 1);
+    font-size: 22px;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    line-height: 46px;
+    transform: translate3d(160px, 120px, 0);
+  }
+  .menu-open-button:hover > .menu-text {
+    background: rgba(0, 0, 0, 0.2);
+  }
+}
+@media only screen and (max-width: 450px) {
+  .menu {
+    top: 35%;
+  }
+
+  .menu-open-button,
+  .menu-open-button:hover,
+  .menu-open:checked + .menu-open-button {
+    transform: scale(0.9, 0.9) translate3d(0, 0, 0);
+  }
+  .menu-item1,
+  .menu-item1:hover,
+  .menu-item1:active,
+  .menu-open:checked ~ .menu-item1 {
+    transform: scale(1, 1);
+    font-size: 22px;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    line-height: 48px;
+    transform: translate3d(0, 100px, 0);
+  }
+
+  .menu-item2,
+  .menu-item2:hover,
+  .menu-item2:active,
+  .menu-open:checked ~ .menu-item2 {
+    transform: scale(1, 1);
+    font-size: 22px;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    line-height: 48px;
+    transform: translate3d(0, 180px, 0);
+  }
+
+  .menu-open-button:hover > .menu-text {
+    background: rgba(0, 0, 0, 0.2);
+  }
 }
 </style>
