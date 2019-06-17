@@ -11,11 +11,9 @@
       </label>
       <a class="menu-item menu-item1" @click="$router.push({ name: 'area'})" title="搜尋">
         搜尋
-        <font-awesome-icon :icon="search" size="1x"/>
       </a>
-      <a class="menu-item menu-item2" href="#singin" title="登入">
+      <a class="menu-item menu-item2" @click="$router.push({ name: 'login'})"  title="登入">
         登入
-        <font-awesome-icon :icon="usercircle" size="1x"/>
       </a>
     </div>
   </div>
@@ -120,15 +118,15 @@ export default {
 .menu-item {
   position: absolute;
   border: 2px solid #fff;
-  line-height: 55px;
-  font-size: 25px;
+  line-height: 45px;
+  font-size: 22px;
   font-weight: bold;
-  width: 200px;
-  height: 60px;
+  width: 160px;
+  height: 50px;
   background: rgba(0, 0, 0, 0.2);
   transform: scale(0.001, 0.001);
   transition: ease-out 300ms;
-  margin-left: 5px;
+  margin-left: 25px;
   top: 100px;
   text-decoration: none;
   color: #fff;
@@ -143,8 +141,8 @@ export default {
 }
 
 .menu-item:active {
-  padding: 10.5px 0px;
-  font-size: 18px;
+  line-height: 45px;
+  font-size: 20px;
 }
 
 .menu-open:checked+.menu-open-button {

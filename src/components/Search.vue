@@ -26,7 +26,7 @@
           </div>
           <ul class="nav_menu">
             <li>
-              <!-- <a href="#">登入</a> -->
+              <!-- <a @click="$router.push({ name: 'login'})">登入</a> -->
               <a>{{area.name}}</a>
             </li>
           </ul>
@@ -217,7 +217,7 @@ img::selection {
   font-weight: bolder;
   color: #fff;
   font-size: 32px;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .nav_menu {

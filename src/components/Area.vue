@@ -8,7 +8,7 @@
           </div>
           <ul class="nav_menu">
             <li>
-              <a href="#">登入</a>
+              <a @click="$router.push({ name: 'login'})">登入</a>
             </li>
           </ul>
         </div>
@@ -72,6 +72,11 @@ export default {
   // name: 'Area'
   data() {
     return {
+      // a:[{
+      //       "id": "0",
+      //       "name": "taipei",
+      //       "info": "臺北市"
+      //   },],
       norths: [{ value: "norths" }],
       easts: [{ value: "easts" }],
       mids: [{ value: "mids" }],
@@ -81,11 +86,12 @@ export default {
   methods: {
     ...mapActions(["setTitleName"]),
     getData() {
-      this.$axios.get("../static/areas.json").then(response => {
+      this.$axios.get("./static/areas.json").then(response => {
         this.norths = response.data.north;
         this.easts = response.data.east;
         this.mids = response.data.mid;
         this.souths = response.data.south;
+        console.log(this.norths)
       });
     },
     onSelectArea(area) {
@@ -114,7 +120,7 @@ export default {
 
 *::selection {
   color: #fff;
-    	background: rgba(255, 255, 255, 0);
+  background: rgba(255, 255, 255, 0);
 
 }
 
@@ -158,7 +164,7 @@ export default {
   font-weight: bolder;
   color: #fff;
   font-size: 32px;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .nav_menu {
