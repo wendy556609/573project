@@ -1,29 +1,9 @@
 <template>
   <div class="LOGIN">
     <div class="wrapper">
-      <div class="top u-cf">
-        <div class="navbar">
-          <div class="nav_LOGO">
-            <a @click="$router.push({ name: 'home'})">Vá ao café</a>
-          </div>
-          <ul class="nav_menu">
-            <li>
-              <a @click="$router.push({ name: 'search'})">搜尋</a>
-            </li>
-            <li :style="{display:this.like}">
-              <a href="#">收藏</a>
-            </li>
-            <li :style="{display:this.signin}" >
-              <a @click="$router.push({ name: 'login'})">登入</a>
-            </li>
-            <li :style="{display:this.signout}">
-              <a  @click="logout">登出</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="down u-cf">
-        <div class="content">
+      <Bar/>
+      <div class="content">
+        <div class="sign_box">
           <form>
             <div class="form-group">
               <input
@@ -45,7 +25,7 @@
             </div>
           </form>
           <div v-if="loading" class="text-center text-center1">
-            <v-progress-circular :size="25" :width="4" color="#fff" indeterminate/>
+            <v-progress-circular color="#fff" indeterminate/>
           </div>
           <div v-else class="text-center text-center2">
             <v-btn @click="loginWithGoogle" flat>Login with Google</v-btn>
@@ -59,6 +39,7 @@
 <script>
 import firebase, { functions } from "firebase";
 import router from "../router.js";
+import Bar from "./Bar";
 
 export default {
   name: "Login",
@@ -68,10 +49,7 @@ export default {
       password: "",
       errors: [],
       loading: false,
-      user: "",
-      signout: "none",
-      signin: "",
-      like: "none"
+      user: ""
     };
   },
   methods: {
@@ -83,37 +61,23 @@ export default {
           .auth()
           .signInWithPopup(new firebase.auth.GoogleAuthProvider());
         this.user = response.user;
-        router.push("/login");
+        router.push("/area");
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             console.log("yes");
           }
         });
-        this.signout="";
-        this.signin="none";
-        this.like="";
+        sessionStorage.setItem("isLogin", true);
+        this.readUser();
       } catch (error) {
         this.errors.push(error.message);
         this.loading = false;
       }
-    },
-    async logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(function() {
-          firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-              console.log("yes");
-            } else {
-              console.log("no");
-            }
-          });
-        });
-        this.signout="none";
-        this.signin="";
-        this.like="none";
     }
+  },
+  mounted() {},
+  components: {
+    Bar
   }
 };
 </script>
@@ -125,18 +89,12 @@ export default {
   padding: 0;
   box-sizing: border-box;
   position: relative;
-  font-family: "微軟正黑體", cursive;
+  font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
 }
 
 *::selection {
   color: #fff;
   background: rgba(255, 255, 255, 0);
-}
-
-.u-cf:after {
-  content: "";
-  display: block;
-  clear: both;
 }
 
 .LOGIN {
@@ -153,69 +111,28 @@ export default {
 .wrapper {
   position: absolute;
   width: 100%;
-  height: auto;
+  height: 100vh;
   cursor: default;
 }
 
-.top {
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 15;
-}
-
-.navbar {
-  outline: 1px solid red;
-  width: 90%;
-  margin: 0 auto;
-}
-
-.nav_LOGO a {
-  text-decoration: none;
-  float: left;
-  font-weight: bold;
-  color: #fff;
-  font-size: 32px;
-  margin-top: 2px;
-}
-
-.nav_menu {
-  float: right;
-  padding: 15px 0;
-  font-size: 16px;
-}
-
-.nav_menu li {
-  list-style: none;
-  float: left;
-  padding: 0 0 0 30px;
-}
-
-.nav_menu li a {
-  text-decoration: none;
-  display: block;
-  color: #fff;
-}
-
-.down {
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0%;
-  background-color: rgba(0, 0, 0, 0);
-}
-
 .content {
-  height: 80%;
-  width: 90%;
+  height: 100%;
+  width: 100%;
   position: absolute;
-  top: 50%;
+  top: 0;
+}
+
+.sign_box {
+  position: absolute;
+  width: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
 }
 .form-group {
   position: relative;
-  width: 50%;
+  width: 90%;
   height: auto;
-  top: 100px;
 }
 .form-control {
   background-color: rgb(0, 0, 0, 0.2);
@@ -225,7 +142,6 @@ export default {
   border-radius: 5px;
   color: #8c8c8c;
   outline: none;
-  font-weight: bold;
   caret-color: #8c8c8c;
   font-size: 15px;
   margin: 20px 0;
@@ -237,17 +153,20 @@ export default {
 .form-control:focus {
   color: #d3d3d3;
 }
+
 .text-center {
   position: relative;
-
-  width: 25%;
+  width: 50%;
   height: auto;
-  top: 200px;
+  margin-top: 20%;
   text-align: center;
 }
+
 .text-center1 {
   padding: 5px 0px;
+  size: 25;
 }
+
 .text-center2 {
   border: 1.5px solid #fff;
   border-radius: 5px;
@@ -258,5 +177,42 @@ export default {
   width: 100%;
   border-radius: 5px;
   padding: 5px 0px;
+}
+
+@media only screen and (max-width: 768px) {
+  .sign_box {
+    width: 90%;
+  }
+  .form-control {
+    font-size: 22px;
+    margin: 50px 0;
+  }
+  .text-center {
+    margin-top: 20%;
+  }
+
+  .text-center1 {
+    padding: 10px 0;
+  }
+
+  .v-btn {
+    width: 100%;
+    height: 50px;
+    padding: 10px 0px;
+    font-size: 20px;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .sign_box {
+    width: 90%;
+  }
+  .form-control {
+    font-size: 24px;
+    margin: 45px 0;
+  }
+  .text-center {
+    margin-top: 25%;
+    width: 70%;
+  }
 }
 </style>
