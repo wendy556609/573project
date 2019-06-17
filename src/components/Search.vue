@@ -13,9 +13,106 @@
                 <font-awesome-icon :icon="like" :class="heartStyle"/>&nbsp;收藏
               </button>
             </div>
-            <!-- <img :src="photo"> -->
-            <li style="width: 100%;height: auto; color:black">{{this.contain}}</li>
-            <iframe width="800" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" :src="this.shopUrls"></iframe>
+            <div class="content_box">
+              <div class="in">
+                <div class="star_left">WIFI穩定</div>
+                <div class="star_right">{{this.wifi}}</div>
+              </div>
+              <div class="in">
+                <div class="star_left">通常有位</div>
+                <div class="star_right">{{this.seat}}</div>
+              </div>
+              <div class="in">
+                <div class="star_left">安靜程度</div>
+                <div class="star_right">{{this.quiet}}</div>
+              </div>
+              <div class="in">
+                <div class="star_left">咖啡好喝</div>
+                <div class="star_right">{{this.tasty}}</div>
+              </div>
+              <div class="in">
+                <div class="star_left">價格便宜</div>
+                <div class="star_right">{{this.cheap}}</div>
+              </div>
+              <div class="in">
+                <div class="star_left">裝潢音樂</div>
+                <div class="star_right">{{this.music}}</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="in">
+                <div class="star_left">有無限時間</div>
+                <div class="star_right">{{this.limit}}</div>
+              </div>
+              <div class="in">
+                <div class="star_left">插座多</div>
+                <div class="star_right">{{this.socket}}</div>
+              </div>
+              <div class="in">
+                <div class="star_left">可站立工作</div>
+                <div class="star_right">{{this.stand}}</div>
+              </div>
+              <div class="in">
+                <div class="star_left">捷運站</div>
+                <div class="star_right">{{this.mrt}}</div>
+              </div>
+            </div>
+            <div class="content_box">
+              <div class="in">
+                <div class="week">
+                  <div class="star_left">週一</div>
+                  <div class="star_right">{{this.mond}}</div>
+                </div>
+                <div class="week">
+                  <div class="star_left">週二</div>
+                  <div class="star_right">{{this.tued}}</div>
+                </div>
+                <div class="week">
+                  <div class="star_left">週三</div>
+                  <div class="star_right">{{this.wedd}}</div>
+                </div>
+                <div class="week">
+                  <div class="star_left">週四</div>
+                  <div class="star_right">{{this.thud}}</div>
+                </div>
+                <div class="week">
+                  <div class="star_left">週五</div>
+                  <div class="star_right">{{this.frid}}</div>
+                </div>
+                <div class="week">
+                  <div class="star_left">週六</div>
+                  <div class="star_right">{{this.satd}}</div>
+                </div>
+                <div class="week">
+                  <div class="star_left">週日</div>
+                  <div class="star_right">{{this.sund}}</div>
+                </div>
+                <div class="week">{{this.time}}</div>
+              </div>
+              <div class="in" style="margin:0">
+                <div class="week">
+                  地址：
+                  <br>
+                  {{this.address}}
+                </div>
+                <div class="week" style="word-break: break-all;">
+                  官網：
+                  <br>
+                  <a :href="this.url">{{this.url}}</a>
+                </div>
+              </div>
+            </div>
+            <div class="content_box">
+              <iframe
+                width="100%"
+                height="400"
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"
+                marginwidth="0"
+                :src="this.shopUrls"
+              ></iframe>
+            </div>
           </div>
           <div class="intro_btm">
             <font-awesome-icon :icon="closeBtn2" class="closeBtn closeBtn2" @click="hide"/>
@@ -25,14 +122,19 @@
     </transition>
     <div class="wrapper">
       <Bar/>
-      <div class="down u-cf">
-        <div class="content">
-          <div class="searchbar">
-            <input v-model="searchtext" v-on:keyup.13="btn" type="text" class="searchTerm" placeholder="Search"/>
-            <button @click="btn" type="submit" class="searchButton">
-              <font-awesome-icon :icon="search"/>
-            </button>
-              <div class="SEARCH">
+      <div class="content">
+        <div class="searchbar">
+          <input
+            v-model="searchtext"
+            v-on:keyup.13="btn"
+            type="text"
+            class="searchTerm"
+            placeholder="Search"
+          >
+          <button @click="btn" type="submit" class="searchButton">
+            <font-awesome-icon :icon="search"/>
+          </button>
+          <div class="SEARCH">
             <div
               v-for="shop in searchData"
               :key="shop.id"
@@ -43,9 +145,9 @@
               <a class="name">{{shop.name}}</a>
             </div>
           </div>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -57,10 +159,10 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import Bar from './Bar'
-import { app } from '../firebase/index';
-import firebase from 'firebase';
-const database = firebase.database(app);//建立功能
+import Bar from "./Bar";
+import { app } from "../firebase/index";
+import firebase from "firebase";
+const database = firebase.database(app); //建立功能
 
 export default {
   props: ["area"],
@@ -76,13 +178,13 @@ export default {
       like: faHeart,
       heartStyle: "",
       //變數
-      shops: [{ value: "shops" }],  
-      areaName: sessionStorage.getItem('areaName'),
+      shops: [{ value: "shops" }],
+      areaName: sessionStorage.getItem("areaName"),
       //咖啡廳內容
-      photo:"",
-      contain:"",
-      shopUrls:"",
-      likeData:[],
+      photo: "",
+      contain: "",
+      shopUrls: "",
+      likeData: [],
       //搜尋
       searchtext: "",
       searchData: [],
@@ -116,9 +218,9 @@ export default {
       this.frid = shop.frid;
       this.satd = shop.satd;
       this.sund = shop.sund;
-      this.limited_time = shop.limit;
+      this.limit = shop.limited_time;
       this.socket = shop.socket;
-      this.standing_desk = shop.stand;
+      this.stand = shop.standing_desk;
       this.mrt = shop.mrt;
       this.shopUrls =
         "http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" +
@@ -148,26 +250,13 @@ export default {
         this.searchData = this.shops;
       });
     },
-    btn(){
-      var search=this.searchtext;
-      if(search){
-         search=search.trim().toLowerCase();
-         this.searchData=this.shops.filter(function(shop){
-           if(shop.name.toLowerCase().indexOf(search)!=-1){
-             return shop;
-           }
-         })
-      }
-      else
-        this.searchData=this.shops
-    },
-    getLike(){
-      if(sessionStorage.getItem("isLogin")==="true"){
-        var like=this.likeData;
-        var link=this.likeLink+this.useruid.trim()+"/"+this.shopId;
-        database.ref(link).once('value',function(snapshop){
-          if(snapshop.val()){
-            database.ref(link).set({})
+    btn() {
+      var search = this.searchtext;
+      if (search) {
+        search = search.trim().toLowerCase();
+        this.searchData = this.shops.filter(function(shop) {
+          if (shop.name.toLowerCase().indexOf(search) != -1) {
+            return shop;
           }
         });
       } else this.searchData = this.shops;
@@ -191,9 +280,9 @@ export default {
   },
   components: {
     FontAwesomeIcon,
-    Bar 
+    Bar
   }
-}
+};
 </script>
 
 <style scoped>
@@ -412,7 +501,7 @@ img::selection {
 }
 
 .content_box:first-child {
-  padding: 40px 0 20px;
+  padding: 30px 0 20px;
   grid-template-columns: 100%;
 }
 
@@ -433,6 +522,7 @@ img::selection {
   margin-top: 10px;
   margin-left: 0;
   border-radius: 5px;
+  outline: none;
 }
 
 .like {
@@ -447,5 +537,50 @@ img::selection {
   position: relative;
   width: 100%;
   top: 0;
+}
+
+.star_left {
+  float: left;
+  width: 40%;
+}
+.star_right {
+  float: right;
+  width: 60%;
+  text-align: right;
+  color: rgba(185, 163, 131, 1);
+}
+.week {
+  width: 100%;
+  float: left;
+  margin-bottom: 3px;
+}
+
+@media only screen and (max-width: 768px) {
+  .SEARCH {
+    grid-template-columns: 49% 49%;
+    grid-column-gap: 2%;
+  }
+  .INTRO {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .SEARCH {
+    grid-template-columns: 100%;
+    grid-row-gap: 10px;
+  }
+  .INTRO {
+    width: 95%;
+  }
+  .content_box:not(:last-child) {
+    display: grid;
+    grid-template-columns: 100%;
+  }
+  .content_box:first-child {
+    padding: 20px 0 20px;
+  }
+  .week {
+    margin-bottom: 3px;
+  }
 }
 </style>

@@ -1,27 +1,8 @@
 <template>
-      <div class="top u-cf">
-        <div class="navbar">
-          <div class="nav_LOGO">
-            <a @click="$router.push({ name: 'home'})">Vá ao café</a>
-          </div>
-          <ul class="nav_menu">
-            <li>
-              <a @click="$router.push({ name: 'area'})">搜尋</a>
-            </li>
-            <li :style="{display:this.like}">
-              <a @click="$router.push({ name: 'like'})">收藏</a>
-            </li>
-            <li :style="{display:this.signin}">
-              <a @click="$router.push({ name: 'login'})">登入</a>
-            </li>
-            <li :style="{display:this.signout}">
-              <a  @click="logout">登出</a>
-            </li>
-            <li :style="{display:this.signout}">
-              <a>{{this.username}}</a>
-            </li>
-          </ul>
-        </div>
+  <div class="BAR u-cf">
+    <div class="wrapper">
+      <div class="nav_LOGO">
+        <a @click="$router.push({ name: 'home'})">Vá ao café</a>
       </div>
       <input class="nav_hum" type="checkbox" id="nav_hum" name="nav_hum">
       <label class="nav_hum_btn" id="nav_hum_btn" for="nav_hum"></label>

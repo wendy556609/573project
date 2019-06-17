@@ -161,8 +161,10 @@ export default {
 }
 
 .area_title {
+  position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 
 .area_menu {
