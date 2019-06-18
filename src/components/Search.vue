@@ -147,6 +147,7 @@
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   </div>
 </template>
@@ -160,8 +161,10 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Bar from "./Bar";
+import Footer from "./Footer";
 import { app } from "../firebase/index";
 import firebase from "firebase";
+
 const database = firebase.database(app); //建立功能
 
 export default {
@@ -200,7 +203,6 @@ export default {
       this.wrapper = false;
       // this.photo = shop.url
       this.likeData = shop;
-
       this.contain = shop.name;
       this.wifi = shop.wifi;
       this.seat = shop.seat;
@@ -257,14 +259,13 @@ export default {
         this.searchData = this.shops.filter(function(shop) {
           if (shop.name.toLowerCase().indexOf(search) != -1) {
             return shop;
-          }
-          else if(shop.address.toLowerCase().indexOf(search) != -1){
+          } else if (shop.address.toLowerCase().indexOf(search) != -1) {
             return shop;
           }
         });
       } else this.searchData = this.shops;
     },
-     getLike() {
+    getLike() {
       if (sessionStorage.getItem("isLogin") === "true") {
         var like = this.likeData;
         var link = this.likeLink + this.useruid.trim() + "/" + this.shopId;
@@ -283,7 +284,8 @@ export default {
   },
   components: {
     FontAwesomeIcon,
-    Bar
+    Bar,
+    Footer
   }
 };
 </script>
@@ -322,12 +324,10 @@ a::selection {
   color: #fff;
   background: rgba(255, 255, 255, 0);
 }
-
 img::selection {
   color: #fff;
   background: rgba(255, 255, 255, 0);
 }
-
 .MAIN {
   width: 100%;
   height: 100%;
@@ -339,25 +339,21 @@ img::selection {
   background-repeat: no-repeat;
   margin: 0 auto;
 }
-
 .wrapper {
   width: 100%;
   height: 100vh;
   cursor: default;
 }
-
 .content {
-  height: auto;
+  min-height: 81.5%;
   width: 90%;
   top: 0;
   padding: 20px 0;
   margin-bottom: 15px;
 }
-
 .searchbar {
   width: 100%;
 }
-
 .searchTerm {
   float: left;
   background-color: rgb(0, 0, 0, 0.2);
@@ -369,18 +365,16 @@ img::selection {
   outline: none;
   caret-color: #8c8c8c;
 }
-
 .searchTerm::-webkit-input-placeholder {
   color: #d3d3d3;
 }
-
 .searchTerm:focus {
   color: #d3d3d3;
 }
-
 .searchButton {
   position: absolute;
   float: right;
+  top: 2px;
   right: 0%;
   width: 35px;
   height: 30px;
@@ -392,12 +386,10 @@ img::selection {
   font-size: 16px;
   outline: none;
 }
-
 .searchButton:active {
   font-size: 14px;
   padding: 2px 0px;
 }
-
 .SEARCH {
   top: 20px;
   display: grid;
@@ -408,7 +400,6 @@ img::selection {
   left: 50%;
   transform: translateX(-50%);
 }
-
 .search_content {
   width: 100%;
   border: 1px solid #fff;
@@ -423,9 +414,7 @@ img::selection {
   height: auto;
   color: white;
 }
-
 /*----------介紹頁面----------*/
-
 .showintro {
   position: fixed;
   width: 100%;
@@ -435,7 +424,6 @@ img::selection {
   overflow-y: auto;
   padding: 25px 0;
 }
-
 .INTRO {
   position: relative;
   width: 60%;
@@ -444,18 +432,15 @@ img::selection {
   background-color: rgba(255, 255, 255, 0.9);
   z-index: 2;
 }
-
 .intro_top {
   position: relative;
   width: 100%;
   top: 25px;
 }
-
 .closeBtn {
   cursor: pointer;
   z-index: 3;
 }
-
 .closeBtn1 {
   position: absolute;
   font-size: 20px;
@@ -464,18 +449,15 @@ img::selection {
   transform: translateY(-50%);
   color: rgba(121, 121, 121, 0.8);
 }
-
 .intro_content {
   width: 90%;
 }
-
 .intro_btm {
   position: relative;
   width: 100%;
   height: 50px;
   border-top: 1.5px solid rgba(121, 121, 121, 0.6);
 }
-
 .closeBtn2 {
   position: relative;
   font-size: 25px;
@@ -484,37 +466,31 @@ img::selection {
   transform: translate(-50%, -50%);
   color: rgba(121, 121, 121, 0.8);
 }
-
 .closeBtn:hover {
   color: rgba(121, 121, 121, 0.6);
 }
-
 .content_box {
   width: 100%;
   height: auto;
   color: black;
   padding: 20px 0;
 }
-
 .content_box:not(:last-child) {
   border-bottom: 1px solid rgba(121, 121, 121, 0.6);
   display: grid;
   grid-template-columns: 48% 48%;
   grid-column-gap: 2%;
 }
-
 .content_box:first-child {
   padding: 30px 0 20px;
   grid-template-columns: 100%;
 }
-
 .title {
   width: 100%;
   height: auto;
   font-size: 28px !important;
   font-weight: bold;
 }
-
 .like_btn {
   width: 53.5px;
   height: auto;
@@ -527,21 +503,17 @@ img::selection {
   border-radius: 5px;
   outline: none;
 }
-
 .like {
   color: red;
 }
-
 .dislike {
   color: rgba(255, 255, 255, 0.8);
 }
-
 .in {
   position: relative;
   width: 100%;
   top: 0;
 }
-
 .star_left {
   float: left;
   width: 40%;
@@ -557,20 +529,34 @@ img::selection {
   float: left;
   margin-bottom: 3px;
 }
-
 @media only screen and (max-width: 768px) {
   .SEARCH {
     grid-template-columns: 49% 49%;
     grid-column-gap: 2%;
   }
+  .content {
+    min-height: 89.5%;
+  }
   .INTRO {
     width: 80%;
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 768px) {
+  .content {
+    min-height: 86.5%;
   }
 }
 @media only screen and (max-width: 450px) {
   .SEARCH {
     grid-template-columns: 100%;
+    grid-template-rows: auto;
     grid-row-gap: 10px;
+  }
+  .content {
+    min-height: 87%;
+  }
+  .title {
+    font-size: 20px !important;
   }
   .INTRO {
     width: 95%;
@@ -584,6 +570,11 @@ img::selection {
   }
   .week {
     margin-bottom: 3px;
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 450px) {
+  .content {
+    min-height: 77.8%;
   }
 }
 </style>

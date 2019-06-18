@@ -77,7 +77,6 @@ export default {
     },
     readUser() {
       this.users = firebase.auth().currentUser;
-
       sessionStorage.setItem("username", this.users.displayName);
       sessionStorage.setItem("uid", this.users.uid);
     }
@@ -98,12 +97,10 @@ export default {
   position: relative;
   font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
 }
-
 *::selection {
   color: #fff;
   background: rgba(255, 255, 255, 0);
 }
-
 .LOGIN {
   width: 100%;
   height: 100%;
@@ -114,27 +111,21 @@ export default {
   background-repeat: no-repeat;
   margin: 0 auto;
 }
-
 .wrapper {
   position: absolute;
   width: 100%;
   height: 100vh;
   cursor: default;
 }
-
 .content {
   height: 100%;
   width: 100%;
-  position: absolute;
-  top: 0;
+  position: relative;
 }
-
 .sign_box {
-  position: absolute;
+  position: relative;
   width: 50%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  margin-top: 10%;
 }
 .form-group {
   position: relative;
@@ -151,34 +142,29 @@ export default {
   outline: none;
   caret-color: #8c8c8c;
   font-size: 15px;
-  margin: 20px 0;
+  margin: 10vh 0 0;
 }
 .form-control::-webkit-input-placeholder {
   color: #d3d3d3;
 }
-
 .form-control:focus {
   color: #d3d3d3;
 }
-
 .text-center {
   position: relative;
   width: 50%;
   height: auto;
-  margin-top: 20%;
+  margin-top: 15vh;
   text-align: center;
 }
-
 .text-center1 {
   padding: 5px 0px;
   size: 25;
 }
-
 .text-center2 {
   border: 1.5px solid #fff;
   border-radius: 5px;
 }
-
 .v-btn {
   color: #fff;
   width: 100%;
@@ -189,6 +175,7 @@ export default {
 @media only screen and (max-width: 768px) {
   .sign_box {
     width: 90%;
+    margin-top: 25%;
   }
   .form-control {
     font-size: 22px;
@@ -197,11 +184,9 @@ export default {
   .text-center {
     margin-top: 20%;
   }
-
   .text-center1 {
     padding: 10px 0;
   }
-
   .v-btn {
     width: 100%;
     height: 50px;
@@ -214,12 +199,42 @@ export default {
     width: 90%;
   }
   .form-control {
-    font-size: 24px;
-    margin: 45px 0;
+    font-size: 4vw;
+    margin: 10vw 0;
   }
   .text-center {
     margin-top: 25%;
     width: 70%;
+  }
+  .text-center1 {
+    padding: 2vw 0;
+  }
+  .v-btn {
+    height: 10vw;
+    padding: 2vw 0px;
+    font-size: 4vw;
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 450px) {
+  .sign_box {
+    width: 80%;
+    margin-top: 5%;
+  }
+  .form-control {
+    font-size: 2vw;
+    margin: 4vh 0;
+  }
+  .text-center {
+    margin-top: 8%;
+    width: 70%;
+  }
+  .text-center1 {
+    padding: 2vh 0;
+  }
+  .v-btn {
+    height: 10vh;
+    padding: 2vh 0px;
+    font-size: 4vh;
   }
 }
 </style>

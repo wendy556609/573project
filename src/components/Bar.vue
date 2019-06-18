@@ -9,7 +9,6 @@
       <div class="line line1"></div>
       <div class="line line2"></div>
       <div class="line line3"></div>
-
       <ul class="nav_menu">
         <li :style="{display:this.signout}" style="color:white;">
           {{this.username}}
@@ -97,28 +96,23 @@ export default {
   position: relative;
   font-family: arial, "Microsoft JhengHei", "微軟正黑體", sans-serif !important;
 }
-
 *::selection {
   color: #fff;
   background: rgba(255, 255, 255, 0);
 }
-
 .u-cf:after {
   content: "";
   display: block;
   clear: both;
 }
-
 .BAR {
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 15;
 }
-
 .wrapper {
   width: 90%;
   margin: 0 auto;
 }
-
 .nav_LOGO a {
   text-decoration: none;
   float: left;
@@ -127,31 +121,26 @@ export default {
   font-size: 32px;
   margin-top: 2px;
 }
-
 .nav_menu {
   float: right;
   padding: 15px 0;
   font-size: 16px;
 }
-
 .nav_menu li {
   list-style: none;
   float: right;
   padding: 0 0 0 30px;
 }
-
 .nav_menu li a {
   text-decoration: none;
   display: block;
   color: #fff;
 }
-
 .nav_hum,
 .nav_hum_btn,
 .line {
   display: none;
 }
-
 @media only screen and (max-width: 450px) {
   .nav_hum_btn,
   .line {
@@ -167,7 +156,6 @@ export default {
   .nav_hum {
     display: none;
   }
-
   .line {
     float: right;
     position: absolute;
@@ -188,7 +176,6 @@ export default {
     position: absolute;
     top: 33.5px;
   }
-
   .nav_hum:checked ~ .line2 {
     opacity: 0;
   }
@@ -205,7 +192,6 @@ export default {
   .nav_hum:checked ~ .nav_menu {
     display: block;
   }
-
   .nav_menu {
     font-size: 16px;
     width: 100%;
@@ -218,7 +204,6 @@ export default {
     padding: 0 0 0 30px;
     right: 0%;
   }
-
   .nav_menu li a {
     text-decoration: none;
     display: block;
