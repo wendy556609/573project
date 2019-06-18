@@ -258,6 +258,9 @@ export default {
           if (shop.name.toLowerCase().indexOf(search) != -1) {
             return shop;
           }
+          else if(shop.address.toLowerCase().indexOf(search) != -1){
+            return shop;
+          }
         });
       } else this.searchData = this.shops;
     },
