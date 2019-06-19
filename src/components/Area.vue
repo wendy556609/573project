@@ -264,7 +264,7 @@ export default {
   .content_menu {
     height: 30%;
     width: 80%;
-     top:40%;
+     top:30%;
     transform: translate(-50%,0%);
   }
   .area_menu1 {
